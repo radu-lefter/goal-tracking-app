@@ -3,42 +3,48 @@ import PropTypes from "prop-types";
 import Tile from "./Tile";
 import Histogram from "./Histogram";
 import ProgressBar from "./ProgressBar";
+import styled from "styled-components";
 
 function DaysCompleted(props) {
   const { days, checkins } = props;
 
-  const textStyle = { textAlign: "center", color: "#BC9CFF" };
-  const divStyle = {
-    display: "grid",
-    gridTemplateColumns: ".8fr",
-    "grid-template-rows": "80px 80px 20px auto",
+  const StyledDaysCompleteHeading = styled.h2`
+    text-align: center;
+    color: ${ props => props.theme.colors.purple};
+  `;
 
-    justifyContent: "center",
-  };
+  const StyledRootDiv = styled.div`
+    display: grid;
+    grid-template-columns: 0.8fr;
+    gridTemplateRows: 55px 80px 20px auto;
+    justify-content: center;
+  `;
 
+  const StyledGoalHeading = styled.h4`
+    color: #1f2041;
+  `;
+  
   return (
     <Tile>
-      <div style={divStyle} id="wrapper">
-        <h2 style={textStyle}> {days} Days Completed! </h2>
-
-        <Histogram barCount={7} bars={checkins.map((c) => c.score * 5)} />
-        <ProgressBar percentage={50} />
-        <h4 style={{ color: "#1F2041" }}>
-          {" "}
+      <StyledRootDiv>
+        <StyledDaysCompleteHeading> {days} Days Completed! </StyledDaysCompleteHeading>
+        <Histogram barCount={7} bars={checkins.map(c => c.score * 5)} />
+        <ProgressBar percentage= {50} />
+        <StyledGoalHeading>
           <strong>50%</strong> TO GOAL!
-        </h4>
-      </div>
+        </StyledGoalHeading>
+      </StyledRootDiv>
     </Tile>
   );
 }
 
 DaysCompleted.propTypes = {
   days: PropTypes.number,
-  checkins: PropTypes.array.isRequired,
+  checkins: PropTypes.array.isRequired
 };
 
 DaysCompleted.defaultProps = {
-  days: 0,
+  days: 0
 };
 
 export default DaysCompleted;
