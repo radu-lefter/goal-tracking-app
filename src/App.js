@@ -5,22 +5,33 @@ import GlobalStyles from "./config/GlobalStyles";
 import { ThemeProvider } from "styled-components";
 import theme from "./config/theme.js";
 import Header from "./Components/Header";
-import CheckinComment from "./Components/CheckinComment";
-import DaysCompleted from "./Components/DaysCompleted";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import Dash from "./Views/Dash";
+import Join from "./Views/Join";
+import Checkin from "./Views/Checkin";
+import Profile from "./Views/Profile";
+import Login from "./Views/Login";
+import PageNotFound from "./Views/PageNotFound";
 
 const checkins = data
 
 function App() {
+
+
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Header />
         <GlobalStyles />
-        <DaysCompleted days={15} checkins={checkins}>
-          {" "}
-        </DaysCompleted>
-       
-       <CheckinComment />
+        <Router>
+          <Routes>
+            <Route path="/" element={<Dash checkins={checkins} />}></Route>
+            <Route path="/profile" element={<Profile />}></Route>
+            <Route path="/checkin" element={<Checkin />}></Route>
+            <Route path="/join" element={<Join />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="*" element={<PageNotFound />}></Route>
+          </Routes>
+        </Router>
 
       </ThemeProvider>
     </div>
