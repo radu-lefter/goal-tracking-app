@@ -12,6 +12,7 @@ function ProgressBar(props) {
     boarder-radius: 2px;
     display: flex;
     align-items: flex-end;
+    margin-top: 15px;
   `;
 
 

@@ -31,7 +31,7 @@ function DaysCompleted(props) {
         <Histogram barCount={7} bars={checkins.map(c => c.score * 5)} />
         <ProgressBar percentage= {50} />
         <StyledGoalHeading>
-          <strong>50%</strong> TO GOAL!
+          <strong>50%</strong> TO <br /> GOAL!
         </StyledGoalHeading>
       </StyledRootDiv>
     </Tile>

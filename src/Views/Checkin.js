@@ -1,10 +1,11 @@
-import React from "react";
-import Tile from "../Components/Tile";
-import styled from "styled-components";
-import Label from "../Components/Label";
-import drinkIcon from "../assets/drink-icon.svg";
-import foodIcon from "../assets/food-icon.svg";
-import Button from "../Components/Button";
+import React from 'react';
+import Tile from '../Components/Tile';
+import styled from 'styled-components';
+import Label from '../Components/Label';
+import drinkIcon from '../assets/drink-icon.svg';
+import foodIcon from '../assets/food-icon.svg';
+import Button from '../Components/Button';
+import Header from '../Components/Header';
 
 const StyledTile = styled(Tile)`
   display: grid;
@@ -69,68 +70,70 @@ const StyledIcon = styled.img`
   margin-left: 6px;
 `;
 
-const Checkin = props => {
+const Checkin = (props) => {
   return (
-    <StyledTile>
-      <StyledHeading> Log Your Progress For May 18 </StyledHeading>
-      <StyledForm>
-        <StyledLabel>Did you exercise for at least 20 mins?</StyledLabel>
-        <StyledCheckinP>
-          {" "}
-          <span>
-            <input type="radio" name="exercise" /> Yes{" "}
-          </span>{" "}
-          <span>
-            <input type="radio" name="exercise" /> No{" "}
-          </span>{" "}
-        </StyledCheckinP>
-        <StyledLabel>Did you eat 5 portions of veg?</StyledLabel>
-        <StyledCheckinP>
-          <span>
-            <input type="radio" name="exercise" /> Yes
-          </span>
-          <span>
-            <input type="radio" name="exercise" /> No
-          </span>
-        </StyledCheckinP>
-        <StyledLabel>WAS Your Diet Perfect?</StyledLabel>
-        <StyledCheckinP>
-          <span>
-            <input type="radio" name="exercise" /> Yes
-          </span>
-          <span>
-            <input type="radio" name="exercise" /> No
-          </span>
-        </StyledCheckinP>
-        <StyledFoodDrinkArea>
-        <StyledLabel>Drinks</StyledLabel>
-        <StyledLabel>Food</StyledLabel>
-          <div>
-            
-            <StyledIcon src={drinkIcon} />
-            <StyledSelect>
-              <option value="1"> 0 </option>
-              <option value="2"> 2 </option>
-              <option value="3"> 3 </option>
-              <option value="4"> 4 </option>
-              <option value="4"> 5 </option>
-            </StyledSelect>
-          </div>
-          <div>
-            <StyledIcon src={foodIcon} />
-            <StyledSelect>
-              <option value="0"> 0 </option>
-              <option value="1"> 1 </option>
-              <option value="2"> 2 </option>
-              <option value="3"> 3 </option>
-              <option value="4"> 4 </option>
-              <option value="4"> 5 </option>
-            </StyledSelect>
-          </div>
-        </StyledFoodDrinkArea>
-        <Button  text="CHECKIN"/>
-      </StyledForm>
-    </StyledTile>
+    <>
+      <Header />
+      <StyledTile>
+        <StyledHeading> Log Your Progress For May 18 </StyledHeading>
+        <StyledForm>
+          <StyledLabel>Did you exercise for at least 20 mins?</StyledLabel>
+          <StyledCheckinP>
+            {' '}
+            <span>
+              <input type="radio" name="exercise" /> Yes{' '}
+            </span>{' '}
+            <span>
+              <input type="radio" name="exercise" /> No{' '}
+            </span>{' '}
+          </StyledCheckinP>
+          <StyledLabel>Did you eat 5 portions of veg?</StyledLabel>
+          <StyledCheckinP>
+            <span>
+              <input type="radio" name="exercise" /> Yes
+            </span>
+            <span>
+              <input type="radio" name="exercise" /> No
+            </span>
+          </StyledCheckinP>
+          <StyledLabel>WAS Your Diet Perfect?</StyledLabel>
+          <StyledCheckinP>
+            <span>
+              <input type="radio" name="exercise" /> Yes
+            </span>
+            <span>
+              <input type="radio" name="exercise" /> No
+            </span>
+          </StyledCheckinP>
+          <StyledFoodDrinkArea>
+            <StyledLabel>Drinks</StyledLabel>
+            <StyledLabel>Food</StyledLabel>
+            <div>
+              <StyledIcon src={drinkIcon} />
+              <StyledSelect>
+                <option value="1"> 0 </option>
+                <option value="2"> 2 </option>
+                <option value="3"> 3 </option>
+                <option value="4"> 4 </option>
+                <option value="4"> 5 </option>
+              </StyledSelect>
+            </div>
+            <div>
+              <StyledIcon src={foodIcon} />
+              <StyledSelect>
+                <option value="0"> 0 </option>
+                <option value="1"> 1 </option>
+                <option value="2"> 2 </option>
+                <option value="3"> 3 </option>
+                <option value="4"> 4 </option>
+                <option value="4"> 5 </option>
+              </StyledSelect>
+            </div>
+          </StyledFoodDrinkArea>
+          <Button text="CHECKIN" />
+        </StyledForm>
+      </StyledTile>
+    </>
   );
 };
 

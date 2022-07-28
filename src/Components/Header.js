@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import styled from "styled-components";
-import avatarLarge from "../assets/avatar_small.png";
+import avatarSmall from "../assets/avatar_small.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import Menu from "./Menu";
@@ -25,7 +25,11 @@ color: ${({ theme }) => theme.colors.darkShade[50]};
 display: flex;
 align-items: center;
 img {
-  margin-top: 8%;
+  margin: 10px;
+  border-radius: 50%;
+};
+h6{
+  margin: 10px;
 }
 `;
 
@@ -74,8 +78,8 @@ function Header(props) {
         </StyledBurgerMenu>
         <StyledUserAvatar>
           <FontAwesomeIcon style={{ fontSize: "16px" }} icon={faChevronDown} />
-          <h6> Joe Appleton</h6>
-          <img src={avatarLarge} alt="avatar" />
+          <h6> User </h6>
+          <img src={avatarSmall} alt="avatar" />
         </StyledUserAvatar>
       </StyledWrapper>
     </div>
