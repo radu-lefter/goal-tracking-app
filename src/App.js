@@ -1,27 +1,31 @@
-import React from "react";
+import React, {useState} from "react";
 import "./App.css";
 import data from "./data.json"
 import GlobalStyles from "./config/GlobalStyles";
 import { ThemeProvider } from "styled-components";
 import theme from "./config/theme.js";
-import Header from "./Components/Header";
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dash from "./Views/Dash";
 import Join from "./Views/Join";
 import Checkin from "./Views/Checkin";
 import Profile from "./Views/Profile";
 import Login from "./Views/Login";
 import PageNotFound from "./Views/PageNotFound";
+import {Context} from "./config/context" 
 
 const checkins = data
 
 function App() {
-
+const [sidebarOpen, setSidebarOpen] = useState(false)
+function toggleSidebar(){
+  setSidebarOpen(!sidebarOpen)
+}
 
   return (
     <div>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
+        <Context.Provider value={{isOpen: sidebarOpen, toggle: toggleSidebar }}>
         <Router>
           <Routes>
             <Route path="/" element={<Dash checkins={checkins} />}></Route>
@@ -32,7 +36,7 @@ function App() {
             <Route path="*" element={<PageNotFound />}></Route>
           </Routes>
         </Router>
-
+        </Context.Provider>
       </ThemeProvider>
     </div>
   );
