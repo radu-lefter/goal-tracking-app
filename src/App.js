@@ -12,6 +12,8 @@ import Profile from "./Views/Profile";
 import Login from "./Views/Login";
 import PageNotFound from "./Views/PageNotFound";
 import {Context} from "./config/context" 
+import { UserAuthContextProvider } from "./config/UserAuthContext";
+import ProtectedRoute from "./Components/ProtectedRoute"
 
 const checkins = data
 
@@ -26,9 +28,10 @@ function toggleSidebar(){
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <Context.Provider value={{isOpen: sidebarOpen, toggle: toggleSidebar }}>
+        <UserAuthContextProvider>
         <Router>
           <Routes>
-            <Route path="/" element={<Dash checkins={checkins} />}></Route>
+            <Route path="/" element={<ProtectedRoute><Dash checkins={checkins} /></ProtectedRoute>}></Route>
             <Route path="/profile" element={<Profile />}></Route>
             <Route path="/checkin" element={<Checkin />}></Route>
             <Route path="/join" element={<Join />}></Route>
@@ -36,6 +39,7 @@ function toggleSidebar(){
             <Route path="*" element={<PageNotFound />}></Route>
           </Routes>
         </Router>
+        </UserAuthContextProvider>
         </Context.Provider>
       </ThemeProvider>
     </div>

@@ -8,19 +8,22 @@ import Header from "../Components/Header";
 function Dash(props) {
 
   const {checkins} = props;
+  const shownDays = 8;
+  const shownData = checkins.slice(0, shownDays).reverse()
+  
+
   return (
     <div>
       <Header />
-      <DaysCompleted days={15} checkins={checkins}>
-        {" "}
+      <DaysCompleted days={checkins.length} shownData={shownData} shownDays={shownDays}>
       </DaysCompleted>
-      <CheckinComment />
+      <CheckinComment days={checkins.length} shownData={shownData} shownDays={shownDays}/>
     </div>
   );
 }
 
 Dash.propTypes = {
-    checkins: PropTypes.array.isRequired
+  checkins: PropTypes.array.isRequired
 };
 
 export default Dash;

@@ -5,10 +5,8 @@ import Histogram from "./Histogram";
 import ProgressBar from "./ProgressBar";
 import styled from "styled-components";
 
-function DaysCompleted(props) {
-  const { days, checkins } = props;
 
-  const StyledDaysCompleteHeading = styled.h2`
+const StyledDaysCompleteHeading = styled.h2`
     text-align: center;
     color: ${ props => props.theme.colors.purple};
   `;
@@ -23,15 +21,20 @@ function DaysCompleted(props) {
   const StyledGoalHeading = styled.h4`
     color: #1f2041;
   `;
+
+function DaysCompleted(props) {
+  const { days, shownData, shownDays } = props;
+  const percent = days/30 * 100;
+  //console.log(shownData);
   
   return (
     <Tile>
       <StyledRootDiv>
         <StyledDaysCompleteHeading> {days} Days Completed! </StyledDaysCompleteHeading>
-        <Histogram barCount={7} bars={checkins.map(c => c.score * 5)} />
-        <ProgressBar percentage= {50} />
+        <Histogram barCount={shownDays} bars={shownData.map(c => c.score * 5)} />
+        <ProgressBar percentage= {percent} />
         <StyledGoalHeading>
-          <strong>50%</strong> TO <br /> GOAL!
+          <strong>{100 - Math.round(percent)}%</strong> TO <br /> GOAL!
         </StyledGoalHeading>
       </StyledRootDiv>
     </Tile>
@@ -40,7 +43,7 @@ function DaysCompleted(props) {
 
 DaysCompleted.propTypes = {
   days: PropTypes.number,
-  checkins: PropTypes.array.isRequired
+  shownData: PropTypes.array.isRequired
 };
 
 DaysCompleted.defaultProps = {

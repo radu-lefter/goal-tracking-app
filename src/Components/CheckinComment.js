@@ -80,6 +80,9 @@ h6:nth-child(2) {
 `;
 
 function CheckinComment(props) {
+
+  const { days, shownData, shownDays } = props;
+
   return (
     <Tile elevation="0.06">
       <StyledDetailsArea>
@@ -93,11 +96,11 @@ function CheckinComment(props) {
             Joe Appleton <StyledSpan> Checked In </StyledSpan>
           </h6>
           <em> 2 hours ago </em> <h6> "Not bad, had a very good day"</h6>
-          <h6> Total</h6>
+          <h5> Total</h5>
           <StyledScoreArea>
-            <h3>15</h3>
+            <h3>{days}</h3>
             <div style={{ width: '100%', height: '90%' }}>
-              <Histogram barCount={7} bars={[10, 50, 30, 80, 80, 60, 20]} />
+              <Histogram barCount={shownDays} bars={shownData.map(c => c.score * 5)} />
             </div>
           </StyledScoreArea>
         </StyledCheckinArea>

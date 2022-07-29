@@ -2,6 +2,7 @@ import React, {useContext} from "react";
 import styled from "styled-components";
 import {Link, useNavigate} from "react-router-dom";
 import {Context} from "../config/context";
+import { useUserAuth } from "../config/UserAuthContext";
 
 const StyledNav = styled.nav`
 ul {  
@@ -37,7 +38,15 @@ function Menu(props) {
 
     const {toggle} = useContext(Context)
     const location = useNavigate();
-
+    const { logOut, user } = useUserAuth();
+    const handleLogout = async () => {
+      try {
+        await logOut();
+        location("/login");
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
     return (
       <div>
         <StyledClosedText onClick={toggle}> X </StyledClosedText>
@@ -46,6 +55,7 @@ function Menu(props) {
             <StyledLi active={location.pathname === "/"}>  <Link to="/"> Dash </Link> </StyledLi>
             <StyledLi active={location.pathname === "/profile"}>  <Link to="/profile"> Profile </Link> </StyledLi>
             <StyledLi active={location.pathname === "/checkin"}>  <Link to="/checkin"> Checkin </Link> </StyledLi>
+            <StyledLi  onClick={handleLogout}><Link to="/login"> Logout </Link></StyledLi>
           </ul>
         </StyledNav>
       </div>
